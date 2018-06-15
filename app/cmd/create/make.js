@@ -6,7 +6,7 @@ const make = async options => {
   const app = path.resolve( 'app' );
   const cmp = path.resolve('app', 'cmp');
   
-  const view = path.join(cmp, 'views', options.view);
+  const framework = path.join(cmp, 'framework', options.framework);
   const style = path.join(cmp, 'style', options.style);
   const compiler = path.join(cmp, 'style', options.compiler);
 
@@ -20,7 +20,7 @@ const make = async options => {
   });
 
   await new Promise((resolve, reject) => {
-    ncp(view, dirname, error => {
+    ncp(framework, dirname, error => {
       if ( error ) return reject();
       resolve();
     });

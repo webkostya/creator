@@ -15,16 +15,13 @@ git clone https://github.com/webkostya/creator
 cd creator
 npm install
 
-// Help
-node index.js -h
-
 // Commands
 npm run create
+npm run test
+npm run help
 ```
 
 ### Создание DApp
-![](preview.gif)
-
 Создание приложения относительно выбранного окружения: фреймворк, стили, язык и тд.
 
 #### Targets
@@ -35,19 +32,26 @@ npm run create
     - Мета-возможности с использованием webpack loaders
 
 ```
-Usage: create [options]
-
-🛠   Create new DApp package
+Usage: node index [command] [options]
 
 Options:
 
-  -n, --name <name>            🏷   Your package name
-  -c, --compiler <compiler>    🛠   Target compiler
-  -s, --style <preprocessor>   💈   Styles preprocessor
-  -f, --framework <framework>  📦  Starter framework
-  -h, --help                   output usage information
-<<<<<<< HEAD
-```
-=======
-```
->>>>>>> 9fc02be8aab63b28407b0f3d06a6f79445f54974
+  -v, --version     output the version number
+  -h, --help        output usage information
+
+Commands:
+
+  create [options]  Create new DApp package
+
+Examples:
+
+$ npm run create
+$ npm run test
+$ npm run help
+
+Options:
+
+-n, --name <name>            Your package name
+-c, --compiler <compiler>    Target compiler
+-s, --style <preprocessor>   Styles preprocessor
+-f, --framework <framework>  Starter framework

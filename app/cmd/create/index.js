@@ -11,13 +11,13 @@ const defaultValues = {
 
 const messages = {
   name: '🏷  Enter your package name',
-  view: '📦  Starter framework',
+  framework: '📦  Starter framework',
   style: '💈  Please choice style preprocessor',
   compiler: '🛠  Please choice compiler'
 }
 
 const inputTypes = {
-  view: 'list',
+  framework: 'list',
   compiler: 'list',
   style: 'list',
   name: 'input'
@@ -26,20 +26,19 @@ const inputTypes = {
 const inputChoices = {
   compiler: ['es6', 'typescript'],
   style: ['sass', 'less'],
-  view: ['angular', 'react', 'vue', 'vanilla']
+  framework: ['angular', 'react', 'vue', 'vanilla']
 }
 
 const command = async (env, options) => {
-  let properties = ['name', 'view', 'compiler', 'style'];
+  let properties = ['name', 'framework', 'compiler', 'style'];
   let output = {}
   let steps = [];
 
   properties.forEach(name => {
-    let exists = typeof( env[name] ) == 'string';
-    
-    if ( exists ) return output[name] = env[name];
+    if ( typeof( env[name] ) == 'string' )
+      return output[name] = env[name];
      
-    let query = {
+    const query = {
       message: messages[name],
       type: inputTypes[name],
       name,
@@ -61,7 +60,7 @@ const command = async (env, options) => {
   });
 
   try {
-    let answers = await inquirer.prompt( steps );
+    const answers = await inquirer.prompt( steps );
 
     output = {
       ...output,
