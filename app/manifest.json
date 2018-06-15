@@ -1,13 +1,9 @@
 {
   "buildCode": 1,
-  "version": "1.0",
-  "name": "app_name",
+  "version": "1.0.0",
+  "name": "",
   
-  "author": {
-    "name": "FirstName LastName",
-    "email": "i@i.com",
-    "id": "hash"
-  },
+  "author": "",
 
   "description": {
     "content": "",
@@ -17,7 +13,7 @@
 
   "apperance": {
     "inject_type": "Marketplace",
-    "decorations": true,
+    "decorations": true
   },
 
   "security": {
@@ -29,7 +25,8 @@
     "hash": "",
     "entry": "index.html",
     "script": "bundle.js",
-    "icons": "icons/",
-    "assets": "assets"
+    "assets": "assets",
+    "thumb": "thumb.png",
+    "icon": "favicon.png"
   }
 }

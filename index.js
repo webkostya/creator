@@ -12,7 +12,7 @@ program
   .option( '-n, --name <name>', '🏷   Your package name' )
   .option( '-c, --compiler <compiler>', '🛠   Target compiler', /^(ts|es6)$/i )
   .option( '-s, --style <preprocessor>', '💈   Styles preprocessor', /^(less|sass)$/ )
-  .option( '-f, --framework <framework>', '📦  Starter framework', /^(angular|react)$/ )
+  .option( '-f, --framework <framework>', '📦  Starter framework', /^(angular|react|vue)$/ )
   .action( create );
 
 program.parse( process.argv );

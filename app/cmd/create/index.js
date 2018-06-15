@@ -10,14 +10,14 @@ const defaultValues = {
 }
 
 const messages = {
-  style: '💈  Please choice style preprocessor',
-  compiler: '🛠  Please choice compiler',
   name: '🏷  Enter your package name',
-  framework: '📦  Starter framework'
+  view: '📦  Starter framework',
+  style: '💈  Please choice style preprocessor',
+  compiler: '🛠  Please choice compiler'
 }
 
 const inputTypes = {
-  framework: 'list',
+  view: 'list',
   compiler: 'list',
   style: 'list',
   name: 'input'
@@ -26,11 +26,11 @@ const inputTypes = {
 const inputChoices = {
   compiler: ['es6', 'typescript'],
   style: ['sass', 'less'],
-  framework: ['angular', 'react']
+  view: ['angular', 'react', 'vue', 'vanilla']
 }
 
 const command = async (env, options) => {
-  let properties = ['name', 'framework', 'compiler', 'style'];
+  let properties = ['name', 'view', 'compiler', 'style'];
   let output = {}
   let steps = [];
 
@@ -70,8 +70,10 @@ const command = async (env, options) => {
 
     await make( output );
 
-    console.log( `\nDApp "${output.name}" created successful`.blue.bold );
-    console.log( `cd ${output.name}`.grey );
+    const dirname = output.name.replace(RegExp(' ', 'g') , '_').toLowerCase();
+
+    console.log( `\n"${output.name}" created successful`.blue.bold );
+    console.log( `\ncd ${dirname} && npm install`.grey );
   } catch ( error ) {
     console.error( error );
   }
