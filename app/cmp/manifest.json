@@ -1,0 +1,35 @@
+{
+  "buildCode": 1,
+  "version": "1.0",
+  "name": "app_name",
+  
+  "author": {
+    "name": "FirstName LastName",
+    "email": "i@i.com",
+    "id": "hash"
+  },
+
+  "description": {
+    "content": "",
+    "keywords": [],
+    "homepage": ""
+  },
+
+  "apperance": {
+    "inject_type": "Marketplace",
+    "decorations": true,
+  },
+
+  "security": {
+    "permissions": [],
+    "signature": ""
+  },
+
+  "bundle": {
+    "hash": "",
+    "entry": "index.html",
+    "script": "bundle.js",
+    "icons": "icons/",
+    "assets": "assets"
+  }
+}
