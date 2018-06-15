@@ -46,4 +46,8 @@ Options:
   -s, --style <preprocessor>   💈   Styles preprocessor
   -f, --framework <framework>  📦  Starter framework
   -h, --help                   output usage information
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 9fc02be8aab63b28407b0f3d06a6f79445f54974
