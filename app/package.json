@@ -1,21 +1,37 @@
 {
-  "name": "templates",
+  "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.tmp.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "webpack": "^4.10.2",
-    "webpack-cli": "^2.1.4",
-    "webpack-dev-server": "^3.1.4"
+    "typescript": "*",
+	  "ts-loader": "*",
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-plugin-transform-runtime": "*",
+    "babel-preset-es2015": "*",
+    "babel-runtime": "*",
+    "cross-env": "*",
+    "css-loader": "*",
+    "sass-loader": "*",
+    "extract-loader": "*",
+    "file-loader": "*",
+    "html-webpack-plugin": "*",
+    "ignore-loader": "*",
+    "style-loader": "*",
+    "vue": "*",
+    "vue-hot-reload-api": "*",
+    "vue-html-loader": "*",
+    "vue-loader": "*",
+    "vue-resource": "*",
+    "vue-style-loader": "*",
+    "vue-template-compiler": "*",
+    "vue-template-es2015-compiler": "*",
+    "webpack": "*",
+    "webpack-cli": "*"
   }
 }

@@ -24,7 +24,7 @@
   "bundle": {
     "hash": "",
     "entry": "index.html",
-    "script": "bundle.js",
+    "script": "main.js",
     "assets": "assets",
     "thumb": "thumb.png",
     "icon": "favicon.png"

@@ -2,11 +2,11 @@
 
 const colors = require( 'colors' );
 const inquirer = require( 'inquirer' );
-const make = require( './make' );
+const appPack = require( './make' );
 
 const defaultValues = {
   compiler: 'es6',
-  style: 'sass'
+  style: 'css'
 }
 
 const messages = {
@@ -25,7 +25,7 @@ const inputTypes = {
 
 const inputChoices = {
   compiler: ['es6', 'typescript'],
-  style: ['sass', 'less'],
+  style: ['css', 'sass', 'less'],
   framework: ['angular', 'react', 'vue', 'vanilla']
 }
 
@@ -67,12 +67,12 @@ const command = async (env, options) => {
       ...answers
     }
 
-    await make( output );
+    await appPack( output );
 
     const dirname = output.name.replace(RegExp(' ', 'g') , '_').toLowerCase();
 
     console.log( `\n"${output.name}" created successful`.blue.bold );
-    console.log( `\ncd ${dirname} && npm install`.grey );
+    console.log( `\ncd ${dirname} && npm install && npm run build`.grey );
   } catch ( error ) {
     console.error( error );
   }

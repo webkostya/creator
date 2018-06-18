@@ -13,7 +13,7 @@ program
   .description( 'Create new DApp package \n' )
   .option( '-n, --name <name>', 'Your package name' )
   .option( '-c, --compiler <compiler>', 'Target compiler', /^(ts|es6)$/i )
-  .option( '-s, --style <preprocessor>', 'Styles preprocessor', /^(less|sass)$/ )
+  .option( '-s, --style <preprocessor>', 'Styles preprocessor', /^(css|less|sass)$/ )
   .option( '-f, --framework <framework>', 'Starter framework', /^(angular|react|vue|vanilla)$/ )
   .action( create );
 

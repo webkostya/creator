@@ -19,6 +19,9 @@ npm install
 npm run create
 npm run test
 npm run help
+
+// Build
+npm run build
 ```
 
 ### Создание DApp

@@ -2,16 +2,17 @@ const { ncp } = require( 'ncp' );
 const path = require( 'path' );
 const fs = require( 'fs' );
 
-const make = async options => {
+async function appPack ( options ) {
   const app = path.resolve( 'app' );
   const cmp = path.resolve('app', 'cmp');
   
   const framework = path.join(cmp, 'framework', options.framework);
-  const style = path.join(cmp, 'style', options.style);
-  const compiler = path.join(cmp, 'style', options.compiler);
+  const compiler = path.join(cmp, 'compiler', options.compiler);
+  const styles = path.join(cmp, 'styles', 'index.css');
 
   const name = options.name.replace(RegExp(' ', 'g') , '_').toLowerCase();
 
+  // Create Dir
   const dirname = await new Promise((resolve, reject) => {
     fs.mkdir(name, error => {
       if ( error ) return reject( error );
@@ -19,36 +20,84 @@ const make = async options => {
     });
   });
 
+  // Framework
   await new Promise((resolve, reject) => {
     ncp(framework, dirname, error => {
       if ( error ) return reject();
       resolve();
     });
   });
-
-  const data = await new Promise((resolve, reject) => {
-    fs.readFile(path.join(app, 'manifest.json'), (error, buffer) => {
+  
+  // Compiler
+  await new Promise((resolve, reject) => {
+    ncp(compiler, dirname, error => {
       if ( error ) return reject();
-
-      try {
-        var object = JSON.parse( buffer.toString() );
-      } catch ( error) {
-        return reject();
-      }
-
-      object.name = name;
-      resolve( object );
+      resolve();
     });
   });
 
+  // Styles
   await new Promise((resolve, reject) => {
-    const string = JSON.stringify(data, false, 2);
+    fs.copyFile(styles, path.format({
+      dir: path.join(dirname, 'vendors'),
+      name: 'index.',
+      ext: options.style
+    }), error => {
+      if ( error ) return reject();
+      resolve();
+    });
+  });
 
-    fs.writeFile(path.resolve(dirname, 'manifest.json'), string, 'utf8', error => {
+  // Read Manifest
+  const manifest = await readDataFile(path.join(app, 'manifest.json'));
+  manifest.name = name;
+
+  // Make Manifest
+  await writeDataFile(manifest, path.resolve(dirname, 'manifest.json'));
+
+  // Read Package
+  const package = await readDataFile(path.join(app, 'package.json'));
+  package.name = name;
+
+  // Make Package
+  await writeDataFile(package, path.resolve(dirname, 'package.json'));
+
+  // Move Webpack
+  await new Promise((resolve, reject) => {
+    fs.copyFile(
+      path.join(app, 'webpack.config.js'),
+      path.resolve(dirname, 'webpack.config.js'), error => {
       if ( error ) return reject();
       resolve();
     });
   });
 }
 
-module.exports = make;
+async function readDataFile ( path ) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, (error, buffer) => {
+      if ( error ) return reject();
+
+      try {
+        var object = JSON.parse( buffer.toString() );
+      } catch ( error ) {
+        return reject();
+      }
+
+      resolve( object );
+    });
+  });
+}
+
+async function writeDataFile (data, path) {
+  return new Promise((resolve, reject) => {
+    const string = JSON.stringify(data, false, 2);
+
+    fs.writeFile(path, string, 'utf8', error => {
+      if ( error ) return reject();
+      resolve();
+    });
+  });
+}
+
+module.exports = appPack;
