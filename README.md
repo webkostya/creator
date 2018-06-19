@@ -19,7 +19,7 @@ npm gulp [type]       // build styles (css, less, sass)
 npm gulp watch:[type] // watch building styles (css, less, sass)
 ```
 
-### *Note: gulp installation is required (https://gulpjs.com)*
+##### *Note: gulp installation is required (https://gulpjs.com)*
 
 ### Commands [options]
 
