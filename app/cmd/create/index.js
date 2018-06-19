@@ -2,6 +2,9 @@
 
 const colors = require( 'colors' );
 const inquirer = require( 'inquirer' );
+const path = require( 'path' );
+const os = require( 'os' );
+
 const appPack = require( './make' );
 
 const defaultValues = {
@@ -69,10 +72,12 @@ const command = async (env, options) => {
 
     await appPack( output );
 
-    const dirname = output.name.replace(RegExp(' ', 'g') , '_').toLowerCase();
+    const name = output.name.replace(RegExp(' ', 'g') , '_').toLowerCase();
+    const dirpath = path.resolve(os.homedir(), name);
 
     console.log( `\n"${output.name}" created successful`.blue.bold );
-    console.log( `\ncd ${dirname} && npm install && npm run build`.grey );
+    console.log( `\ncd ${dirpath}`.grey );
+    console.log( `\nnpm install && npm run build \n`.grey );
   } catch ( error ) {
     console.error( error );
   }

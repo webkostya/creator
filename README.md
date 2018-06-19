@@ -1,38 +1,27 @@
 # Creator
-Инструмент для работы с генерацией и обработкой окружения DApp
 
-## Цели
-- Инструментарий для создания и публикации приложения "за 5 минут"
-- Создание окружения
-- Работа в режиме разработки, инструменты разработки и отладки
-- Работа с смартконтрактами, парсинг, отладка и проверки
-- Генерации шаблонов и скелетов модулей Dapp
-- Публикация приложения в Маркетплейсе
+Tools for creating Application
 
-## Установка и запуск в режиме разработчика
-```
+## Quick start
+``` javascript
 git clone https://github.com/webkostya/creator
 cd creator
 npm install
 
 // Commands
-npm run create
-npm run test
-npm run help
+npm run create        // with options
+npm run test          // without options (created test app)
+npm run help          // print options
 
 // Build
-npm run build
+npm run build         // build views
+npm gulp [type]       // build styles (css, less, sass)
+npm gulp watch:[type] // watch building styles (css, less, sass)
 ```
 
-### Создание DApp
-Создание приложения относительно выбранного окружения: фреймворк, стили, язык и тд.
+### *Note: gulp installation is required (https://gulpjs.com)*
 
-#### Targets
-- Manifest в соответствии с выбранными параметрами
-- Базовое окружение и webpack.config:
-    - Hotreload - обновлять весь код в процессе написания для живого просмотра в браузере
-    - Простая компиляция всех необходимых assets
-    - Мета-возможности с использованием webpack loaders
+### Commands [options]
 
 ```
 Usage: node index [command] [options]

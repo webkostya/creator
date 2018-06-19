@@ -1,6 +1,7 @@
 const { ncp } = require( 'ncp' );
 const path = require( 'path' );
 const fs = require( 'fs' );
+const os = require( 'os' );
 
 async function appPack ( options ) {
   const app = path.resolve( 'app' );
@@ -11,12 +12,14 @@ async function appPack ( options ) {
   const styles = path.join(cmp, 'styles', 'index.css');
 
   const name = options.name.replace(RegExp(' ', 'g') , '_').toLowerCase();
+  const homedir = os.homedir();
+  const dirpath = path.resolve(homedir, name);
 
   // Create Dir
   const dirname = await new Promise((resolve, reject) => {
-    fs.mkdir(name, error => {
+    fs.mkdir(dirpath, error => {
       if ( error ) return reject( error );
-      resolve( name );
+      resolve( dirpath );
     });
   });
 
@@ -39,7 +42,7 @@ async function appPack ( options ) {
   // Styles
   await new Promise((resolve, reject) => {
     fs.copyFile(styles, path.format({
-      dir: path.join(dirname, 'vendors'),
+      dir: path.resolve(dirname, 'vendors'),
       name: 'index.',
       ext: options.style
     }), error => {
@@ -67,6 +70,16 @@ async function appPack ( options ) {
     fs.copyFile(
       path.join(app, 'webpack.config.js'),
       path.resolve(dirname, 'webpack.config.js'), error => {
+      if ( error ) return reject();
+      resolve();
+    });
+  });
+
+  // Move Gulp
+  await new Promise((resolve, reject) => {
+    fs.copyFile(
+      path.join(app, 'gulpfile.js'),
+      path.resolve(dirname, 'gulpfile.js'), error => {
       if ( error ) return reject();
       resolve();
     });

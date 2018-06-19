@@ -10,12 +10,12 @@ const format = {
 
 if ( !existsSync(path.format( format )) ) format.ext = '.js';
 
-const entrypoint = path.format( format );
+const main = path.format( format );
 
 module.exports = {
   watch: true,
   mode: 'development', // production
-  entry: entrypoint,
+  entry: main,
   module: {
     rules: [
       {
@@ -47,7 +47,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js', '.vue', '.json']
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'assets', 'js')
   },
   plugins: [
