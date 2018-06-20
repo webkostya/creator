@@ -1,5 +1,6 @@
 const { ncp } = require( 'ncp' );
 const path = require( 'path' );
+const md5 = require( 'md5' );
 const fs = require( 'fs' );
 const os = require( 'os' );
 
@@ -11,9 +12,9 @@ async function appPack ( options ) {
   const compiler = path.join(cmp, 'compiler', options.compiler);
   const styles = path.join(cmp, 'styles', 'index.css');
 
-  const name = options.name.replace(RegExp(' ', 'g') , '_').toLowerCase();
+  const unic = options.name.replace(RegExp(' ', 'g') , '_').toLowerCase();
   const homedir = os.homedir();
-  const dirpath = path.resolve(homedir, name);
+  const dirpath = path.resolve(homedir, unic);
 
   // Create Dir
   const dirname = await new Promise((resolve, reject) => {
@@ -53,14 +54,16 @@ async function appPack ( options ) {
 
   // Read Manifest
   const manifest = await readDataFile(path.join(app, 'manifest.json'));
-  manifest.name = name;
+  manifest.name = options.name;
+  manifest.hash = md5( unic );
+  manifest.unic = unic;
 
   // Make Manifest
   await writeDataFile(manifest, path.resolve(dirname, 'manifest.json'));
 
   // Read Package
   const package = await readDataFile(path.join(app, 'package.json'));
-  package.name = name;
+  package.name = unic;
 
   // Make Package
   await writeDataFile(package, path.resolve(dirname, 'package.json'));

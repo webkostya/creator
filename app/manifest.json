@@ -1,32 +1,20 @@
 {
-  "buildCode": 1,
-  "version": "1.0.0",
+  "version": "1.0",
+
+  "hash": "",
   "name": "",
+  "unic": "",
+  "tags": [],
+  "icon": "favicon.png",
+  "thumb": "thumb.png",
+  "index": "index.html",
+  "main" : "main.js",
+
+  "description": "This is a api demo dapp",
+
+  "keywords": [],
   
-  "author": "",
-
-  "description": {
-    "content": "",
-    "keywords": [],
-    "homepage": ""
-  },
-
-  "apperance": {
-    "inject_type": "Marketplace",
-    "decorations": true
-  },
-
-  "security": {
-    "permissions": [],
-    "signature": ""
-  },
-
-  "bundle": {
-    "hash": "",
-    "entry": "index.html",
-    "script": "main.js",
-    "assets": "assets",
-    "thumb": "thumb.png",
-    "icon": "favicon.png"
-  }
+  "permissions": [
+    "web", "log"
+  ]
 }

@@ -8,11 +8,13 @@
     "help": "node index.js -h",
     "test": "node index.js create --name=test --compiler=es6 --style=less --framework=vanilla"
   },
+  "author": "webkostya",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.3.0",
     "commander": "^2.15.1",
     "inquirer": "^6.0.0",
+    "md5": "^2.2.1",
     "ncp": "^2.0.0"
   }
 }
